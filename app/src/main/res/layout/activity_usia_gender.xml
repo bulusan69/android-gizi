@@ -27,6 +27,7 @@
         >
     </TextView>
     <EditText
+        android:id="@+id/et_age"
         android:layout_toRightOf="@id/tv_usia"
         android:layout_width="0dp"
         android:layout_weight="0.5"
@@ -51,6 +52,7 @@
             android:layout_height="wrap_content">
         </TextView>
         <Spinner
+            android:id="@+id/sp_gender"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginTop="15dp"
@@ -60,6 +62,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_ok"
         android:layout_below="@id/wrapper_gender"
         android:layout_width="wrap_content"
         android:text="OK"
