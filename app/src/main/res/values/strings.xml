@@ -6,7 +6,7 @@
     <string name="button_about">Tentang</string>
     <string name="usiagender">Masukkan Usia dan Gender Anda</string>
     <string-array name="list_gender">
-        <item>Laki - laki</item>
+        <item>Laki-Laki</item>
         <item>Perempuan</item>
     </string-array>
 </resources>

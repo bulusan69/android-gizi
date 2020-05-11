@@ -1,4 +1,4 @@
-package com.example.taammar;
+package com.example.taammar.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,8 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TableLayout;
 
+import com.example.taammar.R;
+import com.example.taammar.db.DataHelper;
 import com.facebook.stetho.Stetho;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),UsiaGenderActivity.class);
+                Intent intent = new Intent(v.getContext(), UsiaGenderActivity.class);
         startActivity(intent);
         //initDB();
     }
