@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.taammar.model.MappingGizi;
+import com.example.taammar.model.Produk;
 import com.example.taammar.view.ChartFragment;
 import com.example.taammar.view.ProdukFragment;
 
@@ -32,9 +33,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                return ChartFragment.newInstance(mappingGizi);
-            case 1: // Fragment # 0 - This will show FirstFragment different title
                 return ProdukFragment.newInstance();
+            case 1: // Fragment # 0 - This will show FirstFragment different title
+                return ChartFragment.newInstance(mappingGizi);
 
             default:
                 return null;

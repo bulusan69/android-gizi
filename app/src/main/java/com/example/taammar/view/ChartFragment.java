@@ -45,8 +45,10 @@ public class ChartFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chart, container, false);
-         textViewVitATitle = view.findViewById(R.id.tv_VitATitle);
-         textViewVitAValue = view.findViewById(R.id.tv_VitAValue);
+        textViewVitATitle = view.findViewById(R.id.tv_VitATitle);
+        textViewVitAValue = view.findViewById(R.id.tv_VitAValue);
+        textViewVitATitle.setText("Vit A");
+        textViewVitAValue.setText(mMappingGizi.getVitA());
         return view;
     }
 
@@ -57,8 +59,7 @@ public class ChartFragment extends Fragment {
             mMappingGizi = (MappingGizi)getArguments().getSerializable("mappinggizi");
             Log.e("cek value",mMappingGizi.getVitA());
         }
-        textViewVitATitle.setText("Vit A");
-        textViewVitAValue.setText(mMappingGizi.getVitA());
+
     }
 
 
