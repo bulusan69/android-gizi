@@ -18,7 +18,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     public DataHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
-        SQLiteDatabase db=this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
     }
 
     @Override
@@ -33,9 +33,10 @@ public class DataHelper extends SQLiteOpenHelper {
                 "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50') ";
         try{
             db.execSQL(sql);
-            db.execSQL(insertdata);
+            //db.execSQL(insertdata);
+            insertMasterDataMappingGizi(db);
         } catch (Exception e){
-            Log.e("Error kak",e.toString());
+            Log.e("Error onCreate db",e.toString());
         }
 
     }
@@ -81,9 +82,31 @@ public class DataHelper extends SQLiteOpenHelper {
                 return mappingGizi;
             }
             catch (Exception e){
-                Log.e("Error",e.toString());
+                Log.e("Error getValue",e.toString());
             }
             return null;
         }
+
+
+    private void insertMasterDataMappingGizi(SQLiteDatabase db ){
+        String[] INSERT_QUERY = {"INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                                    "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //0
+                                    "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                                    "VALUES ('2','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //1
+
+                        };
+        for(String s : INSERT_QUERY) {
+            try {
+                db.execSQL(s);
+            }
+            catch (Exception e){
+                Log.e("Error insertMasterData" , e.toString());
+            }
+        }
+//
+//        for(int x = 0; x < INSERT_QUERY.length; x = x+1){
+//            db.execSQL(INSERT_QUERY[x]);
+//        }
+    }
 
 }
