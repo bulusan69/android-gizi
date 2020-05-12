@@ -2,6 +2,7 @@ package com.example.taammar.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.example.taammar.R;
 import com.example.taammar.db.DataHelper;
 import com.example.taammar.helper.Utility;
 import com.example.taammar.model.MappingGizi;
+
+import java.io.Serializable;
 
 public class UsiaGenderActivity extends AppCompatActivity {
 
@@ -44,8 +47,11 @@ public class UsiaGenderActivity extends AppCompatActivity {
         else {
             final MappingGizi mappingGizi = dbcenter.getValue(age,Gender);
             if ( mappingGizi != null ) {
-                Toast.makeText(this, "VitC = " + mappingGizi.getVitC(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "VitC = " + mappingGizi.getVitC(), Toast.LENGTH_SHORT).show();
                 //Todo: Data db masuk model MappingGizi, Tanmpilkan MappingGizi ke Activity Selanjutnya
+                Intent intent = new Intent(this, ProdukChartActivity.class);
+                intent.putExtra("mappinggizi", (Serializable) mappingGizi);
+                startActivity(intent);
             }
             else {
                 Toast.makeText(this, "Can not find data ", Toast.LENGTH_SHORT).show();

@@ -29,12 +29,21 @@ public class DataHelper extends SQLiteOpenHelper {
                 " VitB5 text not null, VitB6 text not null, VitH text not null," +
                 "VitB9 text not null, VitB12 text not null,VitC text not null ) ";
 
-        String insertdata = "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50') ";
+        //Todo : Sesuaikan Script CreateTabel
+        String sql1 = "create table mappinggizi (Number integer primary key,Gender text not null,MinUsia text not null," +
+                "MaxUsia not null,VitA text not null, VITD  text not null,VITE text not null, " +
+                "VitK text not null, VitB1 text not null, VitB2 text not null, VitB3 text not null," +
+                " VitB5 text not null, VitB6 text not null, VitH text not null," +
+                "VitB9 text not null, VitB12 text not null,VitC text not null ) ";
+//        String insertdata = "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+//                "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50') ";
         try{
             db.execSQL(sql);
-            //db.execSQL(insertdata);
+            //Todo : uncommand script dibawah setelah script create table disesuaikan
+            //db.execSQL(sql1);
             insertMasterDataMappingGizi(db);
+            //Todo : panggil insertProduct
+
         } catch (Exception e){
             Log.e("Error onCreate db",e.toString());
         }
@@ -47,6 +56,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
     }
 
+    //fungsi untuk select data
     public MappingGizi getValue(String Usia, String Gender){
         SQLiteDatabase db = this.getReadableDatabase();
         String table = "mappinggizi";
@@ -88,13 +98,16 @@ public class DataHelper extends SQLiteOpenHelper {
         }
 
 
+    //fungsi insert ke table mapping gizi
     private void insertMasterDataMappingGizi(SQLiteDatabase db ){
+        //Todo : lengkapi query select
         String[] INSERT_QUERY = {"INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                                     "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //0
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                                     "VALUES ('2','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //1
 
                         };
+
         for(String s : INSERT_QUERY) {
             try {
                 db.execSQL(s);
@@ -107,6 +120,12 @@ public class DataHelper extends SQLiteOpenHelper {
 //        for(int x = 0; x < INSERT_QUERY.length; x = x+1){
 //            db.execSQL(INSERT_QUERY[x]);
 //        }
+    }
+
+
+    //fungsi insert ke table product
+    private void insertProduct(SQLiteDatabase db){
+        //Todo : copy query dari function insertMasterDataMappingGizi
     }
 
 }

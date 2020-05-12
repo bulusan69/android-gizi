@@ -5,8 +5,12 @@
     <string name="button_info">Info</string>
     <string name="button_about">Tentang</string>
     <string name="usiagender">Masukkan Usia dan Gender Anda</string>
+    <string name="notifusia">Usia tidak boleh kurang dari 10 tahun</string>
     <string-array name="list_gender">
         <item>Laki-Laki</item>
         <item>Perempuan</item>
     </string-array>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

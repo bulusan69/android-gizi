@@ -1,6 +1,8 @@
 package com.example.taammar.model;
 
-public class MappingGizi {
+import java.io.Serializable;
+
+public class MappingGizi implements Serializable {
 
     int Number;
     String Gender;
