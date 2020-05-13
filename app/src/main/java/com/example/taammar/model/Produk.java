@@ -30,7 +30,7 @@ public class Produk implements Serializable {
                        String vitB2, String vitB3, String vitB5, String vitB6, String vitH,
                        String vitB9, String vitB12, String vitC) {
             Number = number;
-            NamaProduk = namaproduk
+            NamaProduk = namaproduk;
             VitA = vitA;
             VitD = vitD;
             VitE = vitE;
@@ -59,7 +59,7 @@ public class Produk implements Serializable {
         return NamaProduk;
     }
 
-    public void setGender(String namaProduk) {
+    public void setNamaProduk(String namaProduk) {
         NamaProduk = namaProduk;
     }
 

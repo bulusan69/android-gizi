@@ -13,14 +13,11 @@ import com.facebook.stetho.Stetho;
 
 public class MainActivity extends AppCompatActivity {
 
-    DataHelper dbcenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Stetho.initializeWithDefaults(this);
-        dbcenter = new DataHelper(this);
         Button buttonStart = findViewById(R.id.btn_start);
         Button buttonInfo = findViewById(R.id.btn_info);
         Button buttonAbout = findViewById(R.id.btn_about);
@@ -34,8 +31,4 @@ public class MainActivity extends AppCompatActivity {
     }
 });
         }
-
-    private void initDB(){
-        dbcenter = new DataHelper(this);
-    }
 }

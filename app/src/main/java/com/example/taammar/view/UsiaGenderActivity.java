@@ -26,7 +26,7 @@ public class UsiaGenderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usia_gender);
-        dbcenter = new DataHelper(this);
+        dbcenter = DataHelper.getInstance(this);
         Button buttonOK = findViewById(R.id.btn_ok);
         final EditText editTextAge = findViewById(R.id.et_age);
         final Spinner spinnerGender = findViewById(R.id.sp_gender);
@@ -43,6 +43,9 @@ public class UsiaGenderActivity extends AppCompatActivity {
         int Age = Utility.stringToInt(age);
         if( Age <=10){
             Toast.makeText(this,"Usia tidak boleh kurang dari 10",Toast.LENGTH_SHORT).show();
+        }
+        else if( Age >999){
+            Toast.makeText(this, "Usia tidak boleh melebihi 999",Toast.LENGTH_SHORT).show();
         }
         else {
             final MappingGizi mappingGizi = dbcenter.getValue(age,Gender);
