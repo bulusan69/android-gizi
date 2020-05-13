@@ -42,7 +42,7 @@ public class UsiaGenderActivity extends AppCompatActivity {
     public void validateUI(String age, String Gender){
         int Age = Utility.stringToInt(age);
         if( Age <=10){
-            Toast.makeText(this,"Tezt",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Usia tidak boleh kurang dari 10",Toast.LENGTH_SHORT).show();
         }
         else {
             final MappingGizi mappingGizi = dbcenter.getValue(age,Gender);
