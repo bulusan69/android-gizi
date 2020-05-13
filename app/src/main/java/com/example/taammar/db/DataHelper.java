@@ -5,12 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.taammar.model.MappingGizi;
 import com.example.taammar.model.Produk;
 
-import androidx.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataHelper extends SQLiteOpenHelper {
 
@@ -32,18 +32,18 @@ public class DataHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table mappinggizi (Number integer primary key,Gender text not null,MinUsia text not null," +
-                "MaxUsia not null,VitA text not null, VITD  text not null,VITE text not null, " +
-                "VitK text not null, VitB1 text not null, VitB2 text not null, VitB3 text not null," +
-                " VitB5 text not null, VitB6 text not null, VitH text not null," +
-                "VitB9 text not null, VitB12 text not null,VitC text not null ) ";
+        String sql = "CREATE TABLE mappinggizi (Number INTEGER PRIMARY KEY,Gender TEXT NOT NULL,MinUsia INTEGER NOT NULL," +
+                "MaxUsia INTEGER NOT NULL,VitA TEXT NOT NULL, VitD  TEXT NOT NULL,VitE TEXT NOT NULL, " +
+                "VitK TEXT NOT NULL, VitB1 TEXT NOT NULL, VitB2 TEXT NOT NULL, VitB3 TEXT NOT NULL," +
+                " VitB5 TEXT NOT NULL, VitB6 TEXT NOT NULL, VitH TEXT NOT NULL," +
+                "VitB9 TEXT NOT NULL, VitB12 TEXT NOT NULL,VitC TEXT NOT NULL) ";
 
         //Todo : Sesuaikan Script CreateTabel
-        String sql1 = "create table produk (Number integer primary key, NamaProduk text not null," +
-                "VitA text not null, VitD  text not null,VitE text not null, " +
-                "VitK text not null, VitB1 text not null, VitB2 text not null, VitB3 text not null," +
-                " VitB5 text not null, VitB6 text not null, VitH text not null," +
-                "VitB9 text not null, VitB12 text not null,VitC text not null ) ";
+        String sql1 = "CREATE TABLE produk (Number INTEGER PRIMARY KEY, NamaProduk TEXT NOT NULL," +
+                "VitA TEXT NOT NULL, VitD  TEXT NOT NULL,VitE TEXT NOT NULL, " +
+                "VitK TEXT NOT NULL, VitB1 TEXT NOT NULL, VitB2 TEXT NOT NULL, VitB3 TEXT NOT NULL," +
+                " VitB5 TEXT NOT NULL, VitB6 TEXT NOT NULL, VitH TEXT NOT NULL," +
+                "VitB9 TEXT NOT NULL, VitB12 TEXT NOT NULL,VitC TEXT NOT NULL) ";
 //        String insertdata = "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
 //                "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50') ";
         try{
@@ -70,7 +70,7 @@ public class DataHelper extends SQLiteOpenHelper {
     }
 
     //fungsi untuk select data
-    public MappingGizi getValue(String Usia, String Gender){
+    public MappingGizi getValue(String Usia, String Gender) {
         SQLiteDatabase db = this.getReadableDatabase();
         String table = "mappinggizi";
         String[] columns = null;
@@ -79,11 +79,11 @@ public class DataHelper extends SQLiteOpenHelper {
         String groupBy = null;
         String having = null;
         String orderBy = null;
-        String limit ="1";
-        Cursor cursor = db.query(table,columns,"Gender=? AND MaxUsia >=? AND MinUsia <=? " ,new String[] { Gender,Usia,Usia},groupBy,having,orderBy,limit);
-        if(cursor != null && cursor.getCount()>0)
-            cursor.moveToFirst();
+        String limit = "1";
+        Cursor cursor = db.query(table, columns, "Gender=? AND MaxUsia >=? AND MinUsia <=? ", new String[]{Gender, Usia, Usia}, groupBy, having, orderBy, limit);
+        if (cursor != null && cursor.getCount() > 0)
             try {
+                cursor.moveToFirst();
                 MappingGizi mappingGizi = new MappingGizi();
                 mappingGizi.setNumber(Integer.parseInt(cursor.getString(0)));
                 mappingGizi.setGender(cursor.getString(1));
@@ -103,14 +103,15 @@ public class DataHelper extends SQLiteOpenHelper {
                 mappingGizi.setVitB12(cursor.getString(15));
                 mappingGizi.setVitC(cursor.getString(16));
                 return mappingGizi;
+            } catch (Exception e) {
+                Log.e("Error getValue", e.toString());
+            } finally {
+                cursor.close();
             }
-            catch (Exception e){
-                Log.e("Error getValue",e.toString());
-            }
-            return null;
-        }
+        return null;
+    }
 
-    public Produk getAllProduk(){
+    public List<Produk> getAllProduk() {
         SQLiteDatabase db = this.getReadableDatabase();
         String table = "produk";
         String[] columns = null;
@@ -119,39 +120,41 @@ public class DataHelper extends SQLiteOpenHelper {
         String groupBy = null;
         String having = null;
         String orderBy = null;
-        Cursor cursor = db.query(table,columns,selection , selectionArgs ,groupBy,having,orderBy);
-        if(cursor != null && cursor.getCount()>0)
-            cursor.moveToFirst();
+        List<Produk> listProduk = new ArrayList<>();
+        Cursor cursor = db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy);
         try {
-            Produk produk = new Produk();
-            produk.setNumber(Integer.parseInt(cursor.getString(0)));
-            produk.setNamaProduk(cursor.getString(1));
-            produk.setVitA(cursor.getString(2));
-            produk.setVitD(cursor.getString(3));
-            produk.setVitE(cursor.getString(4));
-            produk.setVitK(cursor.getString(5));
-            produk.setVitB1(cursor.getString(6));
-            produk.setVitB2(cursor.getString(7));
-            produk.setVitB3(cursor.getString(8));
-            produk.setVitB5(cursor.getString(9));
-            produk.setVitB6(cursor.getString(10));
-            produk.setVitH(cursor.getString(11));
-            produk.setVitB9(cursor.getString(12));
-            produk.setVitB12(cursor.getString(13));
-            produk.setVitC(cursor.getString(14));
+            if (cursor.moveToFirst()) {
+                do {
+                    Produk produk = new Produk();
+                    produk.setNumber(Integer.parseInt(cursor.getString(0)));
+                    produk.setNamaProduk(cursor.getString(1));
+                    produk.setVitA(cursor.getString(2));
+                    produk.setVitD(cursor.getString(3));
+                    produk.setVitE(cursor.getString(4));
+                    produk.setVitK(cursor.getString(5));
+                    produk.setVitB1(cursor.getString(6));
+                    produk.setVitB2(cursor.getString(7));
+                    produk.setVitB3(cursor.getString(8));
+                    produk.setVitB5(cursor.getString(9));
+                    produk.setVitB6(cursor.getString(10));
+                    produk.setVitH(cursor.getString(11));
+                    produk.setVitB9(cursor.getString(12));
+                    produk.setVitB12(cursor.getString(13));
+                    produk.setVitC(cursor.getString(14));
 
-            return produk;
+                    listProduk.add(produk);
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            cursor.close();
         }
-        catch (Exception e){
-            Log.e("Error getValue",e.toString());
-        }
-        return null;
+        return listProduk;
     }
 
 
     //fungsi insert ke table mapping gizi
+    //Todo : lengkapi query select
     private void insertMasterDataMappingGizi(SQLiteDatabase db ){
-        //Todo : lengkapi query select
         String[] INSERT_QUERY = {"INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                                     "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //0
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
@@ -167,7 +170,7 @@ public class DataHelper extends SQLiteOpenHelper {
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                                     "VALUES ('7','Laki-Laki','65','80','0.65','0.02','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('8','Laki-Laki','81','999','0.65','0.02','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
+                                    "VALUES ('8','Laki-Laki','81','120','0.65','0.02','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                                     "VALUES ('9','Perempuan','10','12','0.6','0.015','0.015','0.035','1','1','12','5','1.2','0.4','0.0035','0.020','50')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
@@ -183,8 +186,7 @@ public class DataHelper extends SQLiteOpenHelper {
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                                     "VALUES ('15','Perempuan','65','80','0.6','0.020','0.020','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('16','Perempuan','81','999','0.6','0.020','0.020','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')",
-
+                                    "VALUES ('16','Perempuan','81','120','0.6','0.020','0.020','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')"
                         };
 
         for(String s : INSERT_QUERY) {
@@ -203,18 +205,18 @@ public class DataHelper extends SQLiteOpenHelper {
 
 
     //fungsi insert ke table product
+    //Todo : copy query dari function insertMasterDataMappingGizi
     private void insertProduk(SQLiteDatabase db) {
-
-        String[] INSERT_QUERY = {"INSERT INTO produk( Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                "VALUES ('1','Buavita','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
-    };
-        //Todo : copy query dari function insertMasterDataMappingGizi
-        for(String s : INSERT_QUERY) {
+        String[] INSERT_QUERY = {"INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                "VALUES ('1','Buavita','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                "VALUES ('2','Aqua','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')"
+        };
+        for (String s : INSERT_QUERY) {
             try {
                 db.execSQL(s);
-            }
-            catch (Exception e){
-                Log.e("Error insertMasterData" , e.toString());
+            } catch (Exception e) {
+                Log.e("Error insertMasterData", e.toString());
             }
         }
     }

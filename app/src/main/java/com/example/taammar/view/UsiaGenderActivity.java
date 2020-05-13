@@ -39,24 +39,22 @@ public class UsiaGenderActivity extends AppCompatActivity {
         });
     }
 
-    public void validateUI(String age, String Gender){
+    public void validateUI(String age, String Gender) {
         int Age = Utility.stringToInt(age);
-        if( Age <=10){
-            Toast.makeText(this,"Usia tidak boleh kurang dari 10",Toast.LENGTH_SHORT).show();
-        }
-        else if( Age >999){
-            Toast.makeText(this, "Usia tidak boleh melebihi 999",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            final MappingGizi mappingGizi = dbcenter.getValue(age,Gender);
-            if ( mappingGizi != null ) {
+
+        if (Age < 10) {
+            Toast.makeText(this, "Usia tidak boleh kurang dari 10", Toast.LENGTH_SHORT).show();
+        } else if (Age > 120) {
+            Toast.makeText(this, "Usia tidak boleh melebihi 120", Toast.LENGTH_SHORT).show();
+        } else {
+            final MappingGizi mappingGizi = dbcenter.getValue(age, Gender);
+            if (mappingGizi != null) {
                 // Toast.makeText(this, "VitC = " + mappingGizi.getVitC(), Toast.LENGTH_SHORT).show();
                 //Todo: Data db masuk model MappingGizi, Tanmpilkan MappingGizi ke Activity Selanjutnya
                 Intent intent = new Intent(this, ProdukChartActivity.class);
                 intent.putExtra("mappinggizi", (Serializable) mappingGizi);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Can not find data ", Toast.LENGTH_SHORT).show();
             }
         }

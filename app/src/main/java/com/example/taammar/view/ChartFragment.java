@@ -1,9 +1,7 @@
 package com.example.taammar.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -17,8 +15,6 @@ import com.example.taammar.R;
 import com.example.taammar.model.MappingGizi;
 import com.github.mikephil.charting.charts.BarChart;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -27,7 +23,6 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -167,8 +162,8 @@ public class ChartFragment extends Fragment {
         NoOfEmp.add(new BarEntry(1695f, 10));
         NoOfEmp.add(new BarEntry(1695f, 11));
         NoOfEmp.add(new BarEntry(1695f, 12));
-        ArrayList xAxis = new ArrayList();
 
+        ArrayList xAxis = new ArrayList();
         xAxis.add("A");
         xAxis.add("D");
         xAxis.add("E");
@@ -185,10 +180,10 @@ public class ChartFragment extends Fragment {
 
         BarDataSet bardataset = new BarDataSet(NoOfEmp, "Vitamin (Mg)");
         mBarChart.animateY(5000);
-        BarData dataa = new BarData(xAxis, bardataset);
+        BarData data = new BarData(xAxis, bardataset);
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         mBarChart.setDescription("");
-        mBarChart.setData(dataa);
+        mBarChart.setData(data);
         mBarChart.setDoubleTapToZoomEnabled(false);
         mBarChart.setPinchZoom(false);
         mBarChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM.BOTTOM);

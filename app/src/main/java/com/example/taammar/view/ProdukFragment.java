@@ -44,7 +44,7 @@ public class ProdukFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_produk, container, false);
         TextView namaProductTV = view.findViewById(R.id.namaProduk);
-        Produk produk = dataHelper.getAllProduk();
+        Produk produk = dataHelper.getAllProduk().get(1);
         namaProductTV.setText(produk.getNamaProduk());
         return view;
     }
