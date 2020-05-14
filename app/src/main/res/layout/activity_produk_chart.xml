@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ProdukChartActivity">
+
+
     <Button
         android:id="@+id/tambah_produk"
         android:layout_width="match_parent"
@@ -23,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingBottom="80dp"
         tools:context=".view.ChartFragment">
 
 
@@ -30,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="100dp">
+            >
 
             <TextView
                 android:text="Jumlah Vitamin Dari Produk"
