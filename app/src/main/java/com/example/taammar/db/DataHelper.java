@@ -156,37 +156,37 @@ public class DataHelper extends SQLiteOpenHelper {
     //Todo : lengkapi query select
     private void insertMasterDataMappingGizi(SQLiteDatabase db ){
         String[] INSERT_QUERY = {"INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('1','Laki-Laki','10','12','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //0
+                                    "VALUES ('1','Laki-Laki','10','12','0.6','0.015','11','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')", //0
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('2','Laki-Laki','13','15','0.6','0.015','0.015','0.055','1.2','1.3','16','5','1.3','0.4','0.004','0.025','75')", //1
+                                    "VALUES ('2','Laki-Laki','13','15','0.6','0.015','15','0.055','1.2','1.3','16','5','1.3','0.4','0.004','0.025','75')", //1
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('3','Laki-Laki','16','18','0.7','0.015','0.015','0.055','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
+                                    "VALUES ('3','Laki-Laki','16','18','0.7','0.015','15','0.055','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('4','Laki-Laki','19','29','0.65','0.015','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
+                                    "VALUES ('4','Laki-Laki','19','29','0.65','0.015','15','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('5','Laki-Laki','30','49','0.65','0.015','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
+                                    "VALUES ('5','Laki-Laki','30','49','0.65','0.015','15','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('6','Laki-Laki','50','64','0.65','0.015','0.015','0.065','1.2','1.3','16','5','1.7','0.4','0.004','0.03','90')",
+                                    "VALUES ('6','Laki-Laki','50','64','0.65','0.015','15','0.065','1.2','1.3','16','5','1.7','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('7','Laki-Laki','65','80','0.65','0.02','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
+                                    "VALUES ('7','Laki-Laki','65','80','0.65','0.02','15','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('8','Laki-Laki','81','120','0.65','0.02','0.015','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
+                                    "VALUES ('8','Laki-Laki','81','120','0.65','0.02','15','0.065','1.2','1.3','16','5','1.3','0.4','0.004','0.03','90')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('9','Perempuan','10','12','0.6','0.015','0.015','0.035','1','1','12','5','1.2','0.4','0.0035','0.020','50')",
+                                    "VALUES ('9','Perempuan','10','12','0.6','0.015','15','0.035','1','1','12','5','1.2','0.4','0.0035','0.020','50')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('10','Perempuan','13','15','0.6','0.015','0.015','0.055','1.1','1','14','5','1.2','0.4','0.004','0.025','65')",
+                                    "VALUES ('10','Perempuan','13','15','0.6','0.015','15','0.055','1.1','1','14','5','1.2','0.4','0.004','0.025','65')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('11','Perempuan','16','18','0.6','0.015','0.015','0.055','1.1','1','14','5','1.2','0.4','0.004','0.030','75')",
+                                    "VALUES ('11','Perempuan','16','18','0.6','0.015','15','0.055','1.1','1','14','5','1.2','0.4','0.004','0.030','75')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('12','Perempuan','19','29','0.6','0.015','0.015','0.055','1.1','1.1','14','5','1.3','0.4','0.004','0.030','75')",
+                                    "VALUES ('12','Perempuan','19','29','0.6','0.015','15','0.055','1.1','1.1','14','5','1.3','0.4','0.004','0.030','75')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('13','Perempuan','30','49','0.6','0.015','0.015','0.055','1.1','1.1','14','5','1.3','0.4','0.004','0.030','75')",
+                                    "VALUES ('13','Perempuan','30','49','0.6','0.015','15','0.055','1.1','1.1','14','5','1.3','0.4','0.004','0.030','75')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('14','Perempuan','50','64','0.6','0.015','0.015','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')",
+                                    "VALUES ('14','Perempuan','50','64','0.6','0.015','15','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('15','Perempuan','65','80','0.6','0.020','0.020','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')",
+                                    "VALUES ('15','Perempuan','65','80','0.6','0.020','20','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')",
                                     "INSERT INTO mappinggizi( Number, Gender, MinUsia, MaxUsia, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                                    "VALUES ('16','Perempuan','81','120','0.6','0.020','0.020','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')"
+                                    "VALUES ('16','Perempuan','81','120','0.6','0.020','20','0.055','1.1','1.1','14','5','1.5','0.4','0.004','0.030','75')"
                         };
 
         for(String s : INSERT_QUERY) {
@@ -208,15 +208,15 @@ public class DataHelper extends SQLiteOpenHelper {
     //Todo : copy query dari function insertMasterDataMappingGizi
     private void insertProduk(SQLiteDatabase db) {
         String[] INSERT_QUERY = {"INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                "VALUES ('1','Buavita','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('1','Buavita Apple 250ml','0.625','0','0','0','0.069','0.12','4.5','0','0.15','0','0','0','53.625')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                "VALUES ('2','Aqua','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('2','Buavita Lychee 250ml','0.5625','0','0','0','0.115','0','0','0','0.3','0','0','0','33')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                        "VALUES ('3','Aqua1','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('3','Buavita Mango 250ml','0.59375','0','0','0','0.345','0','5.25','0','0.3','0','0.001','0','28.875')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                        "VALUES ('4','Aqua2','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('4','Buavita Orange 250ml','0.34375','0','0','0','0.115','0','0','0','0','0','0','0','24.75')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                        "VALUES ('5','Aqua3','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('5','Bear Brand Gold Malt Putih 140ml','0.15625','0.0009','2.25','0','0.23','0.24','0','0','0.45','0','0','0.0045','8.25')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                         "VALUES ('6','Aqua4','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
