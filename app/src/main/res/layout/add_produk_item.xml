@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layout_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/foto"
+            android:visibility="gone"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:contentDescription="Icon"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_image_24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="Aqua"
+                android:layout_marginBottom="6dp"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="Gizi"
+                android:textColor="@color/mineShaft"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignEnd="@+id/layout_news"
+        android:layout_alignBottom="@+id/layout_news"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/tambah_produk"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_black_clickable_rounded"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:text="Tambah"
+            android:visibility="visible"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/jml_produk_container"
+            android:layout_width="84dp"
+            android:layout_height="match_parent"
+            android:background="#4C3498db"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/decrease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="-"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/jml_produk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/increase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="+"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
