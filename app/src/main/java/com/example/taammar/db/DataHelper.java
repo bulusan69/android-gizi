@@ -218,9 +218,39 @@ public class DataHelper extends SQLiteOpenHelper {
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
                         "VALUES ('5','Bear Brand Gold Malt Putih 140ml','0.15625','0.0009','2.25','0','0.23','0.24','0','0','0.45','0','0','0.0045','8.25')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                        "VALUES ('6','Aqua4','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('6','Diva Mixberries 85ml','0.58','0','15','0','0','0','0','0','0','0','0','0','0')",
                 "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
-                        "VALUES ('7','Aqua5','0.6','0.015','0.011','0.035','1.1','1.3','12','5','1.3','0.4','0.0035','0.02','50')",
+                        "VALUES ('7','Energen Vanila 290g(isi 10, 29g/piece)','0.1875','0.0012','1.5','0','0.115','0.18','0','0','0.225','0','0.0008','0.0075','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('8','Frisian Flag Coconut Delight 225ml','0.15625','0.003','0','0','0.2875','0.24','4.5','1.25','0.3','0','0','0.0075','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('9','Frisian Flag Full Cream 225ml','0.15625','0.0045','0.9','0','0.23','0.24','3','0.75','0.375','0','0','0.009','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('10','Frisian Flag Kacang Hijau 225ml','0.125','0.003','0','0','0.2875','0.36','3.75','1.5','0.3','0','0','0.0094','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('11','Frisian Flag Sweet Delight 225ml','0.2187','0.00375','0','0','0.2875','0.36','4.5','2','0.525','0','0','0.0075','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('12','Indomilk FullCream Susu Segar 250ml', '0.1562','0.006','0.09','0','0.1725','0.3','0','1','0','0.0012','0','0','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('13','Nestum Sereal Cokelat (isi 4, 32g/piece)','0.09375','0.00225','2.25','0','0.1725','0.12','1.5','0.75','0.3','0.1','0.00024','0.0024','28.875')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('14','Real Good Rasa Sereal Coklat 125ml','0.1875','0','0','0.039','0.115','0.3','1.5','0','0','0.04','0.001','0','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('15','Real Good Rasa Sereal Setroberi 125ml','0.125','0','0','0.033','0.115','0.36','3','0','0','0.04','0.0012','0','0')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('16','Ultra Milk Chocolate 250ml','0.125','0.00225','0','0.0036','0.1725','0.18','1.5','0.5','0.225','0.06','0','0.006','6.6')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('17','Ultra Milk Full Cream 250ml','0.125','0.00225','0','0.0048','0.1725','0.18','1.5','0.5','0.15','0.06','0','0.0075','6.6')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('18','Ultra Milk Rasa Moka 250ml','0.125','0.00225','0','0','0.1725','0.18','1.5','0.5','0.225','0.08','0','0.0075','6.6')",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('19','Ultra Sari Kacang Ijo 250ml','0','0','0','0','0.5175','0.3','3.75','0','0.6','0','0.1','0.0285','4.95') "+
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('20','Ultra Milk Rasa Stroberi 250ml','0.125','0.00225','0','0.0036','0.1725','0.18','2.25',\t'0.5','0.225','0.08','0','0.006','6.6'",
+                "INSERT INTO produk (Number, NamaProduk, VitA, VitD, VitE, VitK, VitB1,VitB2, VitB3, VitB5, VitB6, VitH, VitB9, VitB12, VitC) " +
+                        "VALUES ('21','YOU C1000 Orange 140ml','0','0','2.25','0','0','0','0','0','0','0','0','0','915.75')",
+
+
         };
         for (String s : INSERT_QUERY) {
             try {
