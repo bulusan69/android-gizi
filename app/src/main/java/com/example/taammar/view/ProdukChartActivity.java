@@ -1,7 +1,9 @@
 package com.example.taammar.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,26 +11,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.taammar.R;
+import com.example.taammar.adapter.ProductListAdapter;
 import com.example.taammar.db.DataHelper;
 import com.example.taammar.model.MappingGizi;
 import com.example.taammar.model.Produk;
 import com.example.taammar.view.dialog.AddProductDialog;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ProdukChartActivity extends AppCompatActivity {
 
-    FragmentPagerAdapter adapterViewPager;
+    private ProductListAdapter mAdapter;
+    private RecyclerView mRecyclerView;
     private DataHelper dataHelper;
 
     private TextView textViewVitATitle;
@@ -59,9 +70,12 @@ public class ProdukChartActivity extends AppCompatActivity {
     private TextView textViewVitCValue;
     private BarChart mBarChart;
     private View viewTambahan;
+    private View rangkumanContainer;
     private Button tambahProductButton;
     private List<Produk> produkList = new ArrayList<>();
     private List<Produk> itemProdukCart = new ArrayList<>();
+
+    private float A, D, E, K, B1, B2, B3, B5, B6, H, B9, B12, C;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +87,8 @@ public class ProdukChartActivity extends AppCompatActivity {
         View floatingContainer = findViewById(R.id.float_button_container);
         tambahProductButton = floatingContainer.findViewById(R.id.tambah_produk);
         viewTambahan = findViewById(R.id.view_tambahan);
+        mRecyclerView = findViewById(R.id.product_list_recyclerview);
+        rangkumanContainer = findViewById(R.id.rangkuman_produk);
 
         textViewVitATitle = findViewById(R.id.tv_VitATitle);
         textViewVitAValue = findViewById(R.id.tv_VitAValue);
@@ -101,6 +117,11 @@ public class ProdukChartActivity extends AppCompatActivity {
         textViewVitCTitle = findViewById(R.id.tv_VitCTitle);
         textViewVitCValue = findViewById(R.id.tv_VitCValue);
         mBarChart = findViewById(R.id.chart);
+        mAdapter = new ProductListAdapter(itemProdukCart, this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mRecyclerView.setAdapter(mAdapter);
+
         initData(mappingGizi);
         initChart();
 
@@ -115,8 +136,8 @@ public class ProdukChartActivity extends AppCompatActivity {
                     @Override
                     public void onSubmit(List<Produk> listAddProduct) {
                         List<Produk> itemProdukList = new ArrayList<>(listAddProduct);
-                        itemProdukCart.clear();
-                        itemProdukCart.addAll(itemProdukList);
+                        hitungKandunganGizi(itemProdukList);
+                        tambahRangkumanProduk(itemProdukList);
 
                         for (Produk produk : listAddProduct) {
                             if (produkList.contains(produk)) {
@@ -124,12 +145,75 @@ public class ProdukChartActivity extends AppCompatActivity {
                             }
                         }
                     }
+
+                    @Override
+                    public void onCancel() {
+                        resetKandunganGizi();
+                        initChart();
+                        if (rangkumanContainer.getVisibility() == View.VISIBLE) {
+                            itemProdukCart.clear();
+                            mAdapter.notifyDataSetChanged();
+                            rangkumanContainer.setVisibility(View.GONE);
+                        }
+                    }
                 });
                 addProductDialog.show(getSupportFragmentManager(), AddProductDialog.TAG);
 
             }
         });
+    }
 
+    private void tambahRangkumanProduk(List<Produk> itemProdukList) {
+        itemProdukCart.clear();
+        itemProdukCart.addAll(itemProdukList);
+        mAdapter.notifyDataSetChanged();
+        if (itemProdukCart.isEmpty()) {
+            rangkumanContainer.setVisibility(View.GONE);
+        } else {
+            rangkumanContainer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hitungKandunganGizi(List<Produk> listProduk) {
+        resetKandunganGizi();
+        for (Produk produk: listProduk) {
+            DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.US);
+            formatter.setGroupingUsed(false);
+            formatter.setMaximumFractionDigits(4);
+            formatter.setMinimumFractionDigits(1);
+            formatter.setRoundingMode(RoundingMode.HALF_UP);
+            A += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitA()) * produk.getJmlProduk()));
+            D += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitD()) * produk.getJmlProduk()));
+            E += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitE()) * produk.getJmlProduk()));
+            K += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitK()) * produk.getJmlProduk()));
+            B1 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB1()) * produk.getJmlProduk()));
+            B2 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB2()) * produk.getJmlProduk()));
+            B3 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB3()) * produk.getJmlProduk()));
+            B5 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB5()) * produk.getJmlProduk()));
+            B6 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB6()) * produk.getJmlProduk()));
+            H += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitH()) * produk.getJmlProduk()));
+            B9 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB9()) * produk.getJmlProduk()));
+            B12 += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitB12()) * produk.getJmlProduk()));
+            C += Float.parseFloat(formatter.format(Double.parseDouble(produk.getVitC()) * produk.getJmlProduk()));
+        }
+
+        initChart();
+    }
+
+    private void resetKandunganGizi() {
+        A = 0f;
+        D = 0f;
+        E = 0f;
+        K = 0f;
+        B1 = 0f;
+        B2 = 0f;
+        B3 = 0f;
+        B5 = 0f;
+        B6 = 0f;
+        H = 0f;
+        B9 = 0f;
+        B12 = 0f;
+        C = 0f;
     }
 
     @Override
@@ -140,6 +224,14 @@ public class ProdukChartActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = viewTambahan.getLayoutParams();
         params.height = tambahProductButton.getHeight() + 40;
         viewTambahan.setLayoutParams(params);
+        ViewGroup.LayoutParams params1 = mRecyclerView.getLayoutParams();
+
+        if (mRecyclerView.getHeight() > mBarChart.getHeight()) {
+            params1.height = mBarChart.getHeight();
+        } else {
+            params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        }
+        mRecyclerView.setLayoutParams(params1);
     }
 
     public void initData(MappingGizi mMappingGizi){
@@ -174,19 +266,19 @@ public class ProdukChartActivity extends AppCompatActivity {
     public void initChart(){
         //Todo : Ganti value berdasarkan produk
         ArrayList NoOfEmp = new ArrayList();
-        NoOfEmp.add(new BarEntry(945f, 0));
-        NoOfEmp.add(new BarEntry(1040f, 1));
-        NoOfEmp.add(new BarEntry(1133f, 2));
-        NoOfEmp.add(new BarEntry(1240f, 3));
-        NoOfEmp.add(new BarEntry(1369f, 4));
-        NoOfEmp.add(new BarEntry(1487f, 5));
-        NoOfEmp.add(new BarEntry(1501f, 6));
-        NoOfEmp.add(new BarEntry(1645f, 7));
-        NoOfEmp.add(new BarEntry(1578f, 8));
-        NoOfEmp.add(new BarEntry(1695f, 9));
-        NoOfEmp.add(new BarEntry(1695f, 10));
-        NoOfEmp.add(new BarEntry(1695f, 11));
-        NoOfEmp.add(new BarEntry(1695f, 12));
+        NoOfEmp.add(new BarEntry(A, 0));
+        NoOfEmp.add(new BarEntry(D, 1));
+        NoOfEmp.add(new BarEntry(E, 2));
+        NoOfEmp.add(new BarEntry(K, 3));
+        NoOfEmp.add(new BarEntry(B1, 4));
+        NoOfEmp.add(new BarEntry(B2, 5));
+        NoOfEmp.add(new BarEntry(B3, 6));
+        NoOfEmp.add(new BarEntry(B5, 7));
+        NoOfEmp.add(new BarEntry(B6, 8));
+        NoOfEmp.add(new BarEntry(H, 9));
+        NoOfEmp.add(new BarEntry(B9, 10));
+        NoOfEmp.add(new BarEntry(B12, 11));
+        NoOfEmp.add(new BarEntry(C, 12));
 
         ArrayList xAxis = new ArrayList();
         xAxis.add("A");
@@ -204,15 +296,43 @@ public class ProdukChartActivity extends AppCompatActivity {
         xAxis.add("C");
 
         BarDataSet bardataset = new BarDataSet(NoOfEmp, "Vitamin (Mg)");
-        mBarChart.animateY(5000);
+        mBarChart.animateY(2000);
         BarData data = new BarData(xAxis, bardataset);
+        data.setValueFormatter(new MyValueFormatter());
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
         mBarChart.setDescription("");
         mBarChart.setData(data);
         mBarChart.setDoubleTapToZoomEnabled(false);
         mBarChart.setPinchZoom(false);
+        mBarChart.getAxisLeft().setValueFormatter(new MyYAxisValueFormatter());
         mBarChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM.BOTTOM);
         mBarChart.getXAxis().setLabelsToSkip(0);
         mBarChart.invalidate();
+    }
+
+    private class MyValueFormatter implements ValueFormatter {
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.US);
+            formatter.setGroupingUsed(false);
+            formatter.setMaximumFractionDigits(4);
+            formatter.setMinimumFractionDigits(1);
+            formatter.setRoundingMode(RoundingMode.HALF_UP);
+            return formatter.format(value);
+        }
+    }
+
+    private class MyYAxisValueFormatter implements YAxisValueFormatter {
+
+        @Override
+        public String getFormattedValue(float value, YAxis yAxis) {
+            DecimalFormat formatter = (DecimalFormat) DecimalFormat.getInstance(Locale.US);
+            formatter.setGroupingUsed(false);
+            formatter.setMaximumFractionDigits(4);
+            formatter.setMinimumFractionDigits(1);
+            formatter.setRoundingMode(RoundingMode.HALF_UP);
+            return formatter.format(value);
+        }
     }
 }

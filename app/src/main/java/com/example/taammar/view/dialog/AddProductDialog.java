@@ -33,6 +33,7 @@ public class AddProductDialog extends CustomBottomSheetDialog {
     private AddProductDialogListener dialogListener;
     private List<Produk> listProduk;
     private List<Produk> itemProdukCart;
+    private boolean isSubmit = false;
 
     public static AddProductDialog newInstance() {
         AddProductDialog fragment = new AddProductDialog();
@@ -94,6 +95,7 @@ public class AddProductDialog extends CustomBottomSheetDialog {
             public void onClick(View view) {
                 if (dialogListener != null) {
                     dialogListener.onSubmit(itemProdukCart);
+                    isSubmit = true;
                 }
                 dismiss();
             }
@@ -123,6 +125,14 @@ public class AddProductDialog extends CustomBottomSheetDialog {
         return view;
     }
 
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        if (dialogListener!= null && !isSubmit && itemProdukCart.isEmpty()) {
+            dialogListener.onCancel();
+        }
+        super.onDismiss(dialog);
+    }
+
     public void setListProduk(List<Produk> listProduk, List<Produk> itemProdukCart) {
         this.listProduk = listProduk;
         this.itemProdukCart = itemProdukCart;
@@ -134,5 +144,6 @@ public class AddProductDialog extends CustomBottomSheetDialog {
 
     public interface AddProductDialogListener{
         void onSubmit(List<Produk> listAddProduct);
+        void onCancel();
     }
 }

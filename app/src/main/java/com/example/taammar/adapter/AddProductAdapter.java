@@ -50,10 +50,6 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
         return itemProduk.size();
     }
 
-    public List<Produk> getProductAddedList() {
-        return itemProdukCart;
-    }
-
     class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName, textViewUpdate, decreaseButton, increaseButton, jmlEditText;
         Button tambahButton;
@@ -128,6 +124,9 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
                 productAddedList.set(productAddedList.indexOf(produk), produk);
             } else {
                 productAddedList.add(produk);
+            }
+            if (itemCount > 99) {
+                increaseButton.setEnabled(false);
             }
         }
 

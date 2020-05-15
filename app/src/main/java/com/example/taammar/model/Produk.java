@@ -73,7 +73,7 @@ public class Produk implements Serializable {
     }
 
     public String getVitD() {
-        return getVitD();
+        return VitD;
     }
 
     public void setVitD(String vitD) {
@@ -81,10 +81,12 @@ public class Produk implements Serializable {
     }
 
     public String getVitE() {
-        return getVitE();
+        return VitE;
     }
 
-    public void setVitE(String vitE) { VitE = vitE; }
+    public void setVitE(String vitE) {
+        VitE = vitE;
+    }
 
     public String getVitK() {
         return VitK;
