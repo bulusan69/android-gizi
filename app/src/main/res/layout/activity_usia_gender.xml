@@ -6,15 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.UsiaGenderActivity"
-    android:background="@drawable/gradientmain"
-    >
 
+    >
+<RelativeLayout
+   android:layout_centerInParent="true"
+    android:background="@drawable/borderless_button"
+    android:layout_width="wrap_content"
+    android:layout_margin="30dp"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/wrapper_usia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="250dp"
         android:weightSum="2">
     <TextView
         android:id="@+id/tv_usia"
@@ -23,14 +27,14 @@
         android:layout_width="0dp"
         android:layout_weight="0.5"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
+
         >
     </TextView>
     <EditText
         android:id="@+id/et_age"
         android:layout_toRightOf="@id/tv_usia"
         android:layout_width="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1.5"
         android:layout_height="wrap_content"
         android:inputType="number"/>
     </LinearLayout>
@@ -39,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@id/wrapper_usia"
         android:weightSum="2">
         <TextView
@@ -64,10 +68,11 @@
     <Button
         android:id="@+id/btn_ok"
         android:layout_below="@id/wrapper_gender"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:text="OK"
-        android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
+        android:background="@drawable/background_black_clickable_rounded"
+        android:textColor="@color/white"
+        android:layout_marginTop="60dp"
         android:layout_height="wrap_content"/>
-
+</RelativeLayout>
 </RelativeLayout>

@@ -26,9 +26,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), UsiaGenderActivity.class);
-        startActivity(intent);
-        //initDB();
+                startActivity(intent);
+            }
+        });
+
+        buttonInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                intent.putExtra("source","info");
+                startActivity(intent);
+            }
+        });
+
+        buttonAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                intent.putExtra("source","about");
+                startActivity(intent);
+            }
+        });
     }
-});
-        }
 }
