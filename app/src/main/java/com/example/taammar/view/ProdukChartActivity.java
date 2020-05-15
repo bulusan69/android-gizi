@@ -2,17 +2,16 @@ package com.example.taammar.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.taammar.R;
-import com.example.taammar.adapter.ViewPagerAdapter;
 import com.example.taammar.db.DataHelper;
 import com.example.taammar.model.MappingGizi;
 import com.example.taammar.model.Produk;
@@ -23,10 +22,9 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 public class ProdukChartActivity extends AppCompatActivity {
 
@@ -60,6 +58,10 @@ public class ProdukChartActivity extends AppCompatActivity {
     private TextView textViewVitCTitle;
     private TextView textViewVitCValue;
     private BarChart mBarChart;
+    private View viewTambahan;
+    private Button tambahProductButton;
+    private List<Produk> produkList = new ArrayList<>();
+    private List<Produk> itemProdukCart = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +70,10 @@ public class ProdukChartActivity extends AppCompatActivity {
 
         MappingGizi mappingGizi =  (MappingGizi) getIntent().getSerializableExtra("mappinggizi");
         dataHelper = DataHelper.getInstance(this);
-        Button tambahProductButton = findViewById(R.id.tambah_produk);
-        Produk produk = dataHelper.getAllProduk().get(1);
+        View floatingContainer = findViewById(R.id.float_button_container);
+        tambahProductButton = floatingContainer.findViewById(R.id.tambah_produk);
+        viewTambahan = findViewById(R.id.view_tambahan);
+
         textViewVitATitle = findViewById(R.id.tv_VitATitle);
         textViewVitAValue = findViewById(R.id.tv_VitAValue);
         textViewVitB9Title = findViewById(R.id.tv_VitB9Title);
@@ -100,19 +104,24 @@ public class ProdukChartActivity extends AppCompatActivity {
         initData(mappingGizi);
         initChart();
 
+        produkList.addAll(dataHelper.getAllProduk());
+
         tambahProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AddProductDialog addProductDialog = AddProductDialog.newInstance();
-                addProductDialog.setListProduk(dataHelper.getAllProduk());
+                addProductDialog.setListProduk(produkList, itemProdukCart);
                 addProductDialog.setDialogListener(new AddProductDialog.AddProductDialogListener() {
                     @Override
-                    public void onSubmit(Map<Produk, Integer> listAddProduct) {
-                        for (Map.Entry<Produk, Integer> entry : listAddProduct.entrySet()) {
-                            Log.wtf("Tri", "get : " + entry.getKey().getNamaProduk());
-//                            Toast.makeText(this, "Produk : " + entry.getKey().getNamaProduk() +
-//                                    ", Jumlah : " + entry.getValue(), Toast.LENGTH_SHORT).show();
+                    public void onSubmit(List<Produk> listAddProduct) {
+                        List<Produk> itemProdukList = new ArrayList<>(listAddProduct);
+                        itemProdukCart.clear();
+                        itemProdukCart.addAll(itemProdukList);
 
+                        for (Produk produk : listAddProduct) {
+                            if (produkList.contains(produk)) {
+                                produkList.set(produkList.indexOf(produk), produk);
+                            }
                         }
                     }
                 });
@@ -121,6 +130,16 @@ public class ProdukChartActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        //untuk desain tampilan agar button tidak menutupi tampilan
+        ViewGroup.LayoutParams params = viewTambahan.getLayoutParams();
+        params.height = tambahProductButton.getHeight() + 40;
+        viewTambahan.setLayoutParams(params);
     }
 
     public void initData(MappingGizi mMappingGizi){

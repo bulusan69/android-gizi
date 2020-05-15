@@ -16,21 +16,20 @@ import com.example.taammar.R;
 import com.example.taammar.model.Produk;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.ProductViewHolder> {
 
-    private List<Produk> itemProduk = new ArrayList<>();
-    private Map<Produk, Integer> productAddedList = new HashMap<>();
+    private List<Produk> itemProduk;
     private Context context;
     private ItemListener itemListener;
+    private List<Produk> itemProdukCart;
 
-    public AddProductAdapter(List<Produk> itemProduk, Context context, ItemListener itemListener) {
+    public AddProductAdapter(List<Produk> itemProduk, List<Produk> itemProdukCart, Context context, ItemListener itemListener) {
         this.itemProduk = itemProduk;
         this.context = context;
         this.itemListener = itemListener;
+        this.itemProdukCart = itemProdukCart;
     }
 
     @NonNull
@@ -43,7 +42,7 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        ((ProductViewHolder) holder).bind(context, itemProduk.get(position), productAddedList, itemListener);
+        ((ProductViewHolder) holder).bind(context, itemProduk.get(position), itemProdukCart, itemListener);
     }
 
     @Override
@@ -51,8 +50,8 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
         return itemProduk.size();
     }
 
-    public Map<Produk, Integer> getProductAddedList() {
-        return productAddedList;
+    public List<Produk> getProductAddedList() {
+        return itemProdukCart;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -72,16 +71,26 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
             jmlEditText = (TextView) itemView.findViewById(R.id.jml_produk);
         }
 
-        public void bind(Context context, final Produk produk, final Map<Produk, Integer> productAddedList, final ItemListener itemListener) {
+        public void bind(Context context, final Produk produk, final List<Produk> productAddedList, final ItemListener itemListener) {
             textViewName.setText(produk.getNamaProduk());
             textViewUpdate.setText("Kandungan Gizi");
+            jmlEditText.setText(String.valueOf(produk.getJmlProduk()));
+
+            if (produk.getJmlProduk() > 0) {
+                jmlProdukView.setVisibility(View.VISIBLE);
+                tambahButton.setVisibility(View.GONE);
+            } else {
+                jmlProdukView.setVisibility(View.GONE);
+                tambahButton.setVisibility(View.VISIBLE);
+            }
+
             tambahButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tambahButton.setVisibility(View.GONE);
                     jmlProdukView.setVisibility(View.VISIBLE);
-                    jmlEditText.setText("1");
-                    productAddedList.put(produk, 1);
+                    jmlEditText.setText(String.valueOf(0));
+                    increaseJmlProduk(produk, productAddedList);
                     itemListener.onClicked();
                 }
             });
@@ -90,6 +99,7 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
                 @Override
                 public void onClick(View view) {
                     decreaseJmlProduk(produk, productAddedList);
+                    itemListener.onClicked();
                 }
             });
 
@@ -97,6 +107,7 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
                 @Override
                 public void onClick(View view) {
                     increaseJmlProduk(produk, productAddedList);
+                    itemListener.onClicked();
                 }
             });
 
@@ -109,20 +120,32 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
 //                    .into(holder.imageView);
         }
 
-        private void increaseJmlProduk(Produk produk, Map<Produk, Integer> productAddedList) {
+        private void increaseJmlProduk(Produk produk, List<Produk> productAddedList) {
             int itemCount = Integer.parseInt(jmlEditText.getText().toString()) + 1;
             jmlEditText.setText(String.valueOf(itemCount));
-            productAddedList.put(produk, Integer.parseInt(jmlEditText.getText().toString()));
+            produk.setJmlProduk(itemCount);
+            if (productAddedList.contains(produk)) {
+                productAddedList.set(productAddedList.indexOf(produk), produk);
+            } else {
+                productAddedList.add(produk);
+            }
         }
 
-        private void decreaseJmlProduk(Produk produk, Map<Produk, Integer> productAddedList) {
+        private void decreaseJmlProduk(Produk produk, List<Produk> productAddedList) {
             int itemCount = Integer.parseInt(jmlEditText.getText().toString()) - 1;
+            produk.setJmlProduk(itemCount);
+
             if (itemCount <= 0) {
                 jmlProdukView.setVisibility(View.GONE);
                 tambahButton.setVisibility(View.VISIBLE);
+                productAddedList.remove(produk);
             } else {
                 jmlEditText.setText(String.valueOf(itemCount));
-                productAddedList.put(produk, Integer.parseInt(jmlEditText.getText().toString()));
+                if (productAddedList.contains(produk)) {
+                    productAddedList.set(productAddedList.indexOf(produk), produk);
+                } else {
+                    productAddedList.add(produk);
+                }
             }
         }
     }

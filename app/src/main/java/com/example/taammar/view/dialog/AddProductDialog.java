@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
-import java.util.Map;
 
 public class AddProductDialog extends CustomBottomSheetDialog {
     public static final String TAG = "AddProductDialog";
@@ -32,6 +32,7 @@ public class AddProductDialog extends CustomBottomSheetDialog {
     private RecyclerView mRecyclerView;
     private AddProductDialogListener dialogListener;
     private List<Produk> listProduk;
+    private List<Produk> itemProdukCart;
 
     public static AddProductDialog newInstance() {
         AddProductDialog fragment = new AddProductDialog();
@@ -92,26 +93,39 @@ public class AddProductDialog extends CustomBottomSheetDialog {
             @Override
             public void onClick(View view) {
                 if (dialogListener != null) {
-                    dialogListener.onSubmit(mAdapter.getProductAddedList());
+                    dialogListener.onSubmit(itemProdukCart);
                 }
                 dismiss();
             }
         });
 
-        mAdapter = new AddProductAdapter(listProduk, getActivity().getApplicationContext(), new AddProductAdapter.ItemListener() {
+        mAdapter = new AddProductAdapter(listProduk, itemProdukCart, getActivity().getApplicationContext(), new AddProductAdapter.ItemListener() {
             @Override
             public void onClicked() {
-                submitButton.setEnabled(true);
+                if (itemProdukCart.isEmpty()) {
+                    submitButton.setEnabled(false);
+                } else {
+                    submitButton.setEnabled(true);
+                }
+
             }
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
+
+        if (itemProdukCart.isEmpty()) {
+            submitButton.setEnabled(false);
+        } else {
+            submitButton.setEnabled(true);
+        }
 
         return view;
     }
 
-    public void setListProduk(List<Produk> listProduk) {
+    public void setListProduk(List<Produk> listProduk, List<Produk> itemProdukCart) {
         this.listProduk = listProduk;
+        this.itemProdukCart = itemProdukCart;
     }
 
     public void setDialogListener(AddProductDialogListener dialogListener) {
@@ -119,6 +133,6 @@ public class AddProductDialog extends CustomBottomSheetDialog {
     }
 
     public interface AddProductDialogListener{
-        void onSubmit(Map<Produk, Integer> listAddProduct);
+        void onSubmit(List<Produk> listAddProduct);
     }
 }

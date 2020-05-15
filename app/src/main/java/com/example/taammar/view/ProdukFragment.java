@@ -58,17 +58,8 @@ public class ProdukFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AddProductDialog addProductDialog = AddProductDialog.newInstance();
-                addProductDialog.setListProduk(dataHelper.getAllProduk());
-                addProductDialog.setDialogListener(new AddProductDialog.AddProductDialogListener() {
-                    @Override
-                    public void onSubmit(Map<Produk, Integer> listAddProduct) {
-                        for (Map.Entry<Produk, Integer> entry : listAddProduct.entrySet()) {
-                            Log.wtf("Tri", "get : " + entry.getKey().getNamaProduk());
-                            Toast.makeText(getContext(), "Produk : " + entry.getKey().getNamaProduk() +
-                                    ", Jumlah : " + entry.getValue(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                addProductDialog.setListProduk(dataHelper.getAllProduk(), null);
+
                 addProductDialog.show(getFragmentManager(), AddProductDialog.TAG);
             }
         });
