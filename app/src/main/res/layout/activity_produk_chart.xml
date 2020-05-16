@@ -23,7 +23,6 @@
                 android:id="@+id/rangkuman_produk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -31,6 +30,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Rangkuman Produk"
+                    android:padding="15dp"
+                    android:background="#e5e5e5"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -38,6 +39,7 @@
                     android:id="@+id/product_list_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/background_rounded_corner"
                     android:visibility="visible" />
 
@@ -46,7 +48,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="15dp"
+                android:background="#e5e5e5"
                 android:text="Jumlah Vitamin Dari Produk"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -65,7 +68,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="15dp"
+                android:background="#e5e5e5"
                 android:text="Kebutuhan Vitamin"
                 android:textSize="16sp"
                 android:textStyle="bold" />
