@@ -24,9 +24,18 @@ public class DetailActivity extends AppCompatActivity {
             webviewDetail.loadUrl("file:///android_asset/info.html");
 
         }
-        else{
+        else if(Source.equals("howtouse")){
+            toolbarTitle.setText("Cara Penggunaan Aplikasi");
+            webviewDetail.loadUrl("file:///android_asset/howtouse.html");
+
+        }
+        else if(Source.equals("about")){
             toolbarTitle.setText("Tentang Aplikasi");
             webviewDetail.loadUrl("file:///android_asset/about.html");
+        }
+        else{
+            toolbarTitle.setText("Informasi");
+            webviewDetail.loadUrl("file:///android_asset/Informasi.html");
 
         }
     }
