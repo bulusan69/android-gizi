@@ -55,7 +55,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         public void bind(Context context, final Produk produk) {
             textViewName.setText(produk.getNamaProduk());
-            textViewUpdate.setText("Kandungan Gizi");
+            textViewUpdate.setText(produk.getKandunganGizi());
             jmlProdukTextView.setText(produk.getJmlProduk() + "x");
         }
     }

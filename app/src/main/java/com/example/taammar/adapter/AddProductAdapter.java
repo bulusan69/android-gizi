@@ -1,6 +1,7 @@
 package com.example.taammar.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,9 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
 
         public void bind(Context context, final Produk produk, final List<Produk> productAddedList, final ItemListener itemListener) {
             textViewName.setText(produk.getNamaProduk());
-            textViewUpdate.setText("Kandungan Gizi");
+            textViewUpdate.setText("Kandungan Gizi: ");
+            setKandunganGizi(produk);
+
             jmlEditText.setText(String.valueOf(produk.getJmlProduk()));
 
             if (produk.getJmlProduk() > 0) {
@@ -114,6 +117,55 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Pr
 //                    .dontAnimate()
 //                    .placeholder(R.drawable.placeholder)
 //                    .into(holder.imageView);
+        }
+
+        private void setKandunganGizi(Produk produk) {
+            List<String> giziList = new ArrayList<>();
+
+            if (Double.parseDouble(produk.getVitA()) > 0) {
+                giziList.add("Vit A");
+            }
+            if (Double.parseDouble(produk.getVitD()) > 0) {
+                giziList.add("Vit D");
+            }
+            if (Double.parseDouble(produk.getVitE()) > 0) {
+                giziList.add("Vit E");
+            }
+            if (Double.parseDouble(produk.getVitK()) > 0) {
+                giziList.add("Vit K");
+            }
+            if (Double.parseDouble(produk.getVitB1()) > 0) {
+                giziList.add("Vit B1");
+            }
+            if (Double.parseDouble(produk.getVitB2()) > 0) {
+                giziList.add("Vit B2");
+            }
+            if (Double.parseDouble(produk.getVitB3()) > 0) {
+                giziList.add("Vit B3");
+            }
+            if (Double.parseDouble(produk.getVitB5()) > 0) {
+                giziList.add("Vit B5");
+            }
+            if (Double.parseDouble(produk.getVitB6()) > 0) {
+                giziList.add("Vit B6");
+            }
+            if (Double.parseDouble(produk.getVitH()) > 0) {
+                giziList.add("Vit H");
+            }
+            if (Double.parseDouble(produk.getVitB9()) > 0) {
+                giziList.add("Vit B9");
+            }
+            if (Double.parseDouble(produk.getVitB12()) > 0) {
+                giziList.add("Vit B12");
+            }
+            if (Double.parseDouble(produk.getVitC()) > 0) {
+                giziList.add("Vit C");
+            }
+
+            String kandunganGizi = textViewUpdate.getText().toString().concat(TextUtils.join(", ", giziList));
+
+            produk.setKandunganGizi(kandunganGizi);
+            textViewUpdate.setText(kandunganGizi);
         }
 
         private void increaseJmlProduk(Produk produk, List<Produk> productAddedList) {

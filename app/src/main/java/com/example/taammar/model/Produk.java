@@ -21,6 +21,7 @@ public class Produk implements Serializable {
     String VitB12;
     String VitC;
     int jmlProduk = 0;
+    String kandunganGizi;
 
     public Produk(){
 
@@ -174,6 +175,14 @@ public class Produk implements Serializable {
 
     public void setJmlProduk(int jmlProduk) {
         this.jmlProduk = jmlProduk;
+    }
+
+    public String getKandunganGizi() {
+        return kandunganGizi;
+    }
+
+    public void setKandunganGizi(String kandunganGizi) {
+        this.kandunganGizi = kandunganGizi;
     }
 }
 

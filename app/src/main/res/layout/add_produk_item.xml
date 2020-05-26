@@ -6,8 +6,10 @@
 
     <LinearLayout
         android:id="@+id/layout_news"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/layout_tambah_produk"
         android:background="@color/white"
         android:orientation="horizontal"
         android:padding="8dp">
@@ -40,11 +42,11 @@
 
             <TextView
                 android:id="@+id/textUpdate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="Gizi"
+                android:text="@string/kandungan_gizi"
                 android:textColor="@color/mineShaft"
                 android:textSize="11sp" />
 
@@ -54,10 +56,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_tambah_produk"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
-        android:layout_alignEnd="@+id/layout_news"
-        android:layout_alignBottom="@+id/layout_news"
+        android:layout_alignBottom="@id/layout_news"
+        android:layout_alignParentEnd="true"
         android:layout_margin="8dp"
         android:orientation="horizontal">
 

@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="Kandungan Gizi"
+                android:text="@string/kandungan_gizi"
                 android:textColor="@color/mineShaft"
                 android:textSize="11sp" />
 
