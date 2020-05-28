@@ -183,6 +183,9 @@ public class ProdukChartActivity extends AppCompatActivity {
                             mAdapter.notifyDataSetChanged();
                             rangkumanContainer.setVisibility(View.GONE);
                         }
+                        setDefaultColor();
+                        inputkandungangizi();
+                        settextColor();
                     }
                 });
                 addProductDialog.show(getSupportFragmentManager(), AddProductDialog.TAG);
@@ -226,7 +229,7 @@ public class ProdukChartActivity extends AppCompatActivity {
         }
 
         initChart();
-        setDefauktColor();
+        setDefaultColor();
         inputkandungangizi();
         settextColor();
 
@@ -266,7 +269,7 @@ public class ProdukChartActivity extends AppCompatActivity {
 
     }
 
-    private void setDefauktColor(){
+    private void setDefaultColor(){
         textViewProductVitA.setTextColor(getResources().getColor(R.color.black));
         textViewProductVitB9.setTextColor(getResources().getColor(R.color.black));
         textViewProductVitD.setTextColor(getResources().getColor(R.color.black));
