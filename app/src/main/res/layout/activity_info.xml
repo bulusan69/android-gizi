@@ -12,7 +12,7 @@
     android:id="@+id/rv_penggunaan_aplikasi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="15dp"
     android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
@@ -26,11 +26,15 @@
         android:layout_height="wrap_content"/>
 </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
     <RelativeLayout
         android:id="@+id/rv_info_aplikasi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -44,5 +48,8 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 </LinearLayout>

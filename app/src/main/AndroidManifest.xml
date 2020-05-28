@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.InfoActivity"></activity>
-        <activity android:name=".view.DetailActivity" />
-        <activity android:name=".view.ProdukChartActivity" />
-        <activity android:name=".view.UsiaGenderActivity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.InfoActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.DetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ProdukChartActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.UsiaGenderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

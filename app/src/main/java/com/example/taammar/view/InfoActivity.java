@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.taammar.R;
 
@@ -13,6 +14,7 @@ public class InfoActivity extends AppCompatActivity {
 
     RelativeLayout rv_penggunaan_aplikasi;
     RelativeLayout rv_info_aplikasi;
+    TextView toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         rv_penggunaan_aplikasi = findViewById(R.id.rv_penggunaan_aplikasi);
         rv_info_aplikasi = findViewById(R.id.rv_info_aplikasi);
+        toolbarTitle = findViewById(R.id.tv_toolbar_title);
+        toolbarTitle.setText("info");
         rv_penggunaan_aplikasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.taammar.R;
 import com.example.taammar.adapter.ProductListAdapter;
 import com.example.taammar.db.DataHelper;
+import com.example.taammar.helper.Utility;
 import com.example.taammar.model.MappingGizi;
 import com.example.taammar.model.Produk;
 import com.example.taammar.view.dialog.AddProductDialog;
@@ -68,13 +69,26 @@ public class ProdukChartActivity extends AppCompatActivity {
     private TextView textViewVitB12Value;
     private TextView textViewVitCTitle;
     private TextView textViewVitCValue;
+    private TextView textViewProductVitA;
+    private TextView textViewProductVitB9;
+    private TextView textViewProductVitD;
+    private TextView textViewProductVitE;
+    private TextView textViewProductVitK;
+    private TextView textViewProductVitB1;
+    private TextView textViewProductVitB2;
+    private TextView textViewProductVitB3;
+    private TextView textViewProductVitB5;
+    private TextView textViewProductVitB6;
+    private TextView textViewProductVitH;
+    private TextView textViewProductVitB12;
+    private TextView textViewProductVitC;
     private BarChart mBarChart;
     private View viewTambahan;
     private View rangkumanContainer;
     private Button tambahProductButton;
     private List<Produk> produkList = new ArrayList<>();
     private List<Produk> itemProdukCart = new ArrayList<>();
-
+    private MappingGizi mappingGizi;
     private float A, D, E, K, B1, B2, B3, B5, B6, H, B9, B12, C;
 
     @Override
@@ -82,7 +96,7 @@ public class ProdukChartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produk_chart);
 
-        MappingGizi mappingGizi =  (MappingGizi) getIntent().getSerializableExtra("mappinggizi");
+         mappingGizi =  (MappingGizi) getIntent().getSerializableExtra("mappinggizi");
         dataHelper = DataHelper.getInstance(this);
         View floatingContainer = findViewById(R.id.float_button_container);
         tambahProductButton = floatingContainer.findViewById(R.id.tambah_produk);
@@ -116,6 +130,20 @@ public class ProdukChartActivity extends AppCompatActivity {
         textViewVitB12Value = findViewById(R.id.tv_VitB12Value);
         textViewVitCTitle = findViewById(R.id.tv_VitCTitle);
         textViewVitCValue = findViewById(R.id.tv_VitCValue);
+
+        textViewProductVitA = findViewById(R.id.tv_ProductVitAValue);
+        textViewProductVitB9 = findViewById(R.id.tv_ProductVitB9Value);
+        textViewProductVitD = findViewById(R.id.tv_ProductVitDValue);
+        textViewProductVitE = findViewById(R.id.tv_ProductVitEValue);
+        textViewProductVitK = findViewById(R.id.tv_ProductVitKValue);
+        textViewProductVitB1 = findViewById(R.id.tv_ProductVitB1Value);
+        textViewProductVitB2 = findViewById(R.id.tv_ProductVitB2Value);
+        textViewProductVitB3 = findViewById(R.id.tv_ProductVitB3Value);
+        textViewProductVitB5 = findViewById(R.id.tv_ProductVitB5Value);
+        textViewProductVitB6 = findViewById(R.id.tv_ProductVitB6Value);
+        textViewProductVitH = findViewById(R.id.tv_ProductVitHValue);
+        textViewProductVitB12 = findViewById(R.id.tv_ProductVitB12Value);
+        textViewProductVitC = findViewById(R.id.tv_ProductVitCValue);
         mBarChart = findViewById(R.id.chart);
         mAdapter = new ProductListAdapter(itemProdukCart, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -198,6 +226,10 @@ public class ProdukChartActivity extends AppCompatActivity {
         }
 
         initChart();
+        setDefauktColor();
+        inputkandungangizi();
+        settextColor();
+
     }
 
     private void resetKandunganGizi() {
@@ -214,6 +246,82 @@ public class ProdukChartActivity extends AppCompatActivity {
         B9 = 0f;
         B12 = 0f;
         C = 0f;
+    }
+
+    private void inputkandungangizi(){
+        textViewProductVitA.setText(A +" Mg");
+        textViewProductVitB9.setText(B9 +" Mg");
+        textViewProductVitD.setText(D +" Mg");
+        textViewProductVitE.setText(E +" Mg");
+        textViewProductVitK.setText(K +" Mg");
+        textViewProductVitB1.setText(B1 +" Mg");
+        textViewProductVitB2.setText(B2 +" Mg");
+        textViewProductVitB3.setText(B3 +" Mg");
+        textViewProductVitB5.setText(B5 +" Mg");
+        textViewProductVitB6.setText(B6 +" Mg");
+        textViewProductVitH.setText(H +" Mg");
+        textViewProductVitB12.setText(B12 +" Mg");
+        textViewProductVitC.setText(C +" Mg");
+
+
+    }
+
+    private void setDefauktColor(){
+        textViewProductVitA.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB9.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitD.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitE.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitK.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB1.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB2.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB3.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB5.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB6.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitH.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitB12.setTextColor(getResources().getColor(R.color.black));
+        textViewProductVitC.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    private void settextColor(){
+        if (A < Utility.stringToFloat(mappingGizi.getVitA())){
+            textViewProductVitA.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B9 < Utility.stringToFloat(mappingGizi.getVitB9())){
+            textViewProductVitB9.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (D < Utility.stringToFloat(mappingGizi.getVITD())){
+            textViewProductVitD.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (E < Utility.stringToFloat(mappingGizi.getVITE())){
+            textViewProductVitE.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (K < Utility.stringToFloat(mappingGizi.getVitK())){
+            textViewProductVitK.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B1 < Utility.stringToFloat(mappingGizi.getVitB1())){
+            textViewProductVitB1.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B2 < Utility.stringToFloat(mappingGizi.getVitB2())){
+            textViewProductVitB2.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B3 < Utility.stringToFloat(mappingGizi.getVitB3())){
+            textViewProductVitB3.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B5 < Utility.stringToFloat(mappingGizi.getVitB5())){
+            textViewProductVitB5.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B6 < Utility.stringToFloat(mappingGizi.getVitB6())){
+            textViewProductVitB6.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (H < Utility.stringToFloat(mappingGizi.getVitH())){
+            textViewProductVitH.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (B12 < Utility.stringToFloat(mappingGizi.getVitB12())){
+            textViewProductVitB12.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
+        if (C < Utility.stringToFloat(mappingGizi.getVitC())){
+            textViewProductVitC.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
     }
 
     @Override

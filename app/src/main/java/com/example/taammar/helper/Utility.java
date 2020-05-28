@@ -14,4 +14,15 @@ public class Utility {
         }
         return a;
     }
+
+    public static Float stringToFloat (String value){
+        float f = 0;
+        try {
+            f = Float.parseFloat(value);
+        }
+        catch (Exception e){
+            Log.e("Err stringToFloat",e.toString());
+        }
+        return f;
+    }
 }
