@@ -252,21 +252,19 @@ public class ProdukChartActivity extends AppCompatActivity {
     }
 
     private void inputkandungangizi(){
-        textViewProductVitA.setText(String.valueOf(A));
-        textViewProductVitB9.setText(String.valueOf(B9));
-        textViewProductVitD.setText(String.valueOf(D));
-        textViewProductVitE.setText(String.valueOf(E));
-        textViewProductVitK.setText(String.valueOf(K));
-        textViewProductVitB1.setText(String.valueOf(B1));
-        textViewProductVitB2.setText(String.valueOf(B2));
-        textViewProductVitB3.setText(String.valueOf(B3));
-        textViewProductVitB5.setText(String.valueOf(B5));
-        textViewProductVitB6.setText(String.valueOf(B6));
-        textViewProductVitH.setText(String.valueOf(H));
-        textViewProductVitB12.setText(String.valueOf(B12));
-        textViewProductVitC.setText(String.valueOf(C));
-
-
+        textViewProductVitA.setText(String.format(Locale.US,"%.4f",A));
+        textViewProductVitB9.setText(String.format(Locale.US,"%.4f",B9));
+        textViewProductVitD.setText(String.format(Locale.US,"%.4f",D));
+        textViewProductVitE.setText(String.format(Locale.US,"%.4f",E));
+        textViewProductVitK.setText(String.format(Locale.US,"%.4f",K));
+        textViewProductVitB1.setText(String.format(Locale.US,"%.4f",B1));
+        textViewProductVitB2.setText(String.format(Locale.US,"%.4f",B2));
+        textViewProductVitB3.setText(String.format(Locale.US,"%.4f",B3));
+        textViewProductVitB5.setText(String.format(Locale.US,"%.4f",B5));
+        textViewProductVitB6.setText(String.format(Locale.US,"%.4f",B6));
+        textViewProductVitH.setText(String.format(Locale.US,"%.4f",H));
+        textViewProductVitB12.setText(String.format(Locale.US,"%.4f",B12));
+        textViewProductVitC.setText(String.format(Locale.US,"%.4f",C));
     }
 
     private void setDefaultColor(){
