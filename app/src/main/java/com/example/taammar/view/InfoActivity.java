@@ -23,7 +23,7 @@ public class InfoActivity extends AppCompatActivity {
         rv_penggunaan_aplikasi = findViewById(R.id.rv_penggunaan_aplikasi);
         rv_info_aplikasi = findViewById(R.id.rv_info_aplikasi);
         toolbarTitle = findViewById(R.id.tv_toolbar_title);
-        toolbarTitle.setText("info");
+        toolbarTitle.setText("Info");
         rv_penggunaan_aplikasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

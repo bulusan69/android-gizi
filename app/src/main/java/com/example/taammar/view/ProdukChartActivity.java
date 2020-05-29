@@ -252,19 +252,19 @@ public class ProdukChartActivity extends AppCompatActivity {
     }
 
     private void inputkandungangizi(){
-        textViewProductVitA.setText(A +" Mg");
-        textViewProductVitB9.setText(B9 +" Mg");
-        textViewProductVitD.setText(D +" Mg");
-        textViewProductVitE.setText(E +" Mg");
-        textViewProductVitK.setText(K +" Mg");
-        textViewProductVitB1.setText(B1 +" Mg");
-        textViewProductVitB2.setText(B2 +" Mg");
-        textViewProductVitB3.setText(B3 +" Mg");
-        textViewProductVitB5.setText(B5 +" Mg");
-        textViewProductVitB6.setText(B6 +" Mg");
-        textViewProductVitH.setText(H +" Mg");
-        textViewProductVitB12.setText(B12 +" Mg");
-        textViewProductVitC.setText(C +" Mg");
+        textViewProductVitA.setText(String.valueOf(A));
+        textViewProductVitB9.setText(String.valueOf(B9));
+        textViewProductVitD.setText(String.valueOf(D));
+        textViewProductVitE.setText(String.valueOf(E));
+        textViewProductVitK.setText(String.valueOf(K));
+        textViewProductVitB1.setText(String.valueOf(B1));
+        textViewProductVitB2.setText(String.valueOf(B2));
+        textViewProductVitB3.setText(String.valueOf(B3));
+        textViewProductVitB5.setText(String.valueOf(B5));
+        textViewProductVitB6.setText(String.valueOf(B6));
+        textViewProductVitH.setText(String.valueOf(H));
+        textViewProductVitB12.setText(String.valueOf(B12));
+        textViewProductVitC.setText(String.valueOf(C));
 
 
     }
@@ -346,32 +346,32 @@ public class ProdukChartActivity extends AppCompatActivity {
     }
 
     public void initData(MappingGizi mMappingGizi){
-        textViewVitATitle.setText("Vit A");
-        textViewVitAValue.setText(mMappingGizi.getVitA() + " Mg");
-        textViewVitB9Title.setText("Vit B9");
-        textViewVitB9Value.setText(mMappingGizi.getVitB9() + " Mg");
-        textViewVitDTitle.setText("Vit D");
-        textViewVitDValue.setText(mMappingGizi.getVITD() + " Mg");
-        textViewVitETitle.setText("Vit E");
-        textViewVitEValue.setText(mMappingGizi.getVITE() + " Mg");
-        textViewVitKTitle.setText("Vit K");
-        textViewVitKValue.setText(mMappingGizi.getVitK() + " Mg");
-        textViewVitB1Title.setText("Vit B1");
-        textViewVitB1Value.setText(mMappingGizi.getVitB1() + " Mg");
-        textViewVitB2Title.setText("Vit B2");
-        textViewVitB2Value.setText(mMappingGizi.getVitB2() + " Mg");
-        textViewVitB3Title.setText("Vit B3");
-        textViewVitB3Value.setText(mMappingGizi.getVitB3() + " Mg");
-        textViewVitB5Title.setText("Vit B5");
-        textViewVitB5Value.setText(mMappingGizi.getVitB5() + " Mg");
-        textViewVitB6Title.setText("Vit B6");
-        textViewVitB6Value.setText(mMappingGizi.getVitB6() + " Mg");
-        textViewVitHTitle.setText("Vit H");
-        textViewVitHValue.setText(mMappingGizi.getVitH() + " Mg");
-        textViewVitB12Title.setText("Vit B12");
-        textViewVitB12Value.setText(mMappingGizi.getVitB12() + " Mg");
-        textViewVitCTitle.setText("Vit C");
-        textViewVitCValue.setText(mMappingGizi.getVitC() + " Mg");
+        textViewVitATitle.setText("A");
+        textViewVitAValue.setText(mMappingGizi.getVitA());
+        textViewVitB9Title.setText("B9");
+        textViewVitB9Value.setText(mMappingGizi.getVitB9());
+        textViewVitDTitle.setText("D");
+        textViewVitDValue.setText(mMappingGizi.getVITD());
+        textViewVitETitle.setText("E");
+        textViewVitEValue.setText(mMappingGizi.getVITE());
+        textViewVitKTitle.setText("K");
+        textViewVitKValue.setText(mMappingGizi.getVitK());
+        textViewVitB1Title.setText("B1");
+        textViewVitB1Value.setText(mMappingGizi.getVitB1());
+        textViewVitB2Title.setText("B2");
+        textViewVitB2Value.setText(mMappingGizi.getVitB2());
+        textViewVitB3Title.setText("B3");
+        textViewVitB3Value.setText(mMappingGizi.getVitB3());
+        textViewVitB5Title.setText("B5");
+        textViewVitB5Value.setText(mMappingGizi.getVitB5());
+        textViewVitB6Title.setText("B6");
+        textViewVitB6Value.setText(mMappingGizi.getVitB6());
+        textViewVitHTitle.setText("H");
+        textViewVitHValue.setText(mMappingGizi.getVitH());
+        textViewVitB12Title.setText("B12");
+        textViewVitB12Value.setText(mMappingGizi.getVitB12());
+        textViewVitCTitle.setText("C");
+        textViewVitCValue.setText(mMappingGizi.getVitC());
     }
 
     public void initChart(){

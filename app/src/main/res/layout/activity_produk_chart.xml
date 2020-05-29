@@ -97,16 +97,19 @@
                     android:id="@+id/tv_KebutuhanVitamin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Kebutuhan"
+                    android:text="Kebutuhan (Mg)"
                     android:layout_weight="1" />
                 <TextView
                     android:id="@+id/tv_VitaminProduct"
                     android:layout_width="0dp"
-                    android:text="Kandungan"
+                    android:text="Kandungan (Mg)"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
